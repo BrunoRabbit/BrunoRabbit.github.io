@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+.App-myName, .App-title {
+  margin: 0; 
+  padding: 0; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-title {
+  font-size: calc(100px + 5vmin);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: .95;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-myName {
+  font-size: calc(4px + 2vmin);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 600;
+  color: #c7c7c7;
+  line-height: .4;
+  padding-left: 9px;
 }
 
 .App-header {
-  background-color: #282c34;
+  background: radial-gradient(
+    circle at center,
+    #4c3b5c 0,
+    #34283f,
+    #0F0D10 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.boxes {
+  font-size: calc(20px + 2vmin);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.title-section {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background-color: #ccc; 
+  padding: 10px; 
+  margin-left: 10px; 
+}
+
+.icon {
+  font-size: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon-container:hover .icon {
+  transform: translateY(-10px);
 }
