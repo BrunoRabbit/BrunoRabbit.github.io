@@ -1,23 +1,20 @@
-import React from 'react';
-import './App.css';
+import Intro from './segments/intro';
+import "./App.css";
+import BodyProjects from './segments/body_projects';
+// import Trees from './components/trees';
 
 function App() {
   return (
     <div>
-      <header className="App-header">
-        <div>
-          <p className='App-myName'>HI 👋 MY NAME IS BRUNO </p>
-          <span className='App-title'>
-            <div className='title-section'>
-              <span>FLUTTER</span>
-              <span className='boxes'>⚙️</span>
-              <span className='boxes'>🔧</span>
-            </div>
-            <span>DEVELOPER</span>
-          </span>
+      <Intro />
+      <section >
+        <div className='gradientColor'>
+          {/* <Trees /> */}
+          <BodyProjects />
+
         </div>
-      </header>
-    </div>
+      </section >
+    </div >
   );
 }
 

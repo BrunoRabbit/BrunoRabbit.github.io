@@ -1,62 +1,31 @@
-.App-myName, .App-title {
-  margin: 0; 
-  padding: 0; 
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
 }
+  .svg-separator{
+    display: block;
+    background: 0 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9;
+    -webkit-transform: translateY(-100%) translateY(2px);
+    transform: translateY(-100%) translateY(2px);
+    width: 100%;
+  }
 
-.App-title {
-  font-size: calc(100px + 5vmin);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: 600;
-  letter-spacing: 2px;
-  line-height: .95;
-}
+  .sep9 {
+    transform: translateY(0%) translateY(-2px) scale(-1,-1);
+    transform-origin: bottom;
+  }
 
-.App-myName {
-  font-size: calc(4px + 2vmin);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: 600;
-  color: #c7c7c7;
-  line-height: .4;
-  padding-left: 9px;
-}
+  .svg-separator.bottom{
+    top: auto;
+    bottom: 0;
+  }
 
-.App-header {
-  background: radial-gradient(
-    circle at center,
-    #4c3b5c 0,
-    #34283f,
-    #0F0D10 100%);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.boxes {
-  font-size: calc(20px + 2vmin);
-}
-
-.title-section {
-  display: flex;
-  align-items: center;
-}
-
-.icon-container {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  background-color: #ccc; 
-  padding: 10px; 
-  margin-left: 10px; 
-}
-
-.icon {
-  font-size: 30px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.icon-container:hover .icon {
-  transform: translateY(-10px);
-}
+  .black{background-color:#333;}
+  .gradientColor {background: linear-gradient(#D6CBE3, #9198e5)}

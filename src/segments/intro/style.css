@@ -1,0 +1,49 @@
+ .App-title {
+   margin: 0;
+   padding: 0;
+ }
+
+ .App-title {
+   font-size: calc(80px + 5vmin);
+   font-family: 'Inter', sans-serif;
+   font-weight: 900;
+   line-height: .95;
+ }
+
+ .App-header {
+   background: radial-gradient(circle at center,
+       #4c3b5c 0,
+       #34283f,
+       #0F0D10 100%);
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   color: white;
+ }
+
+ .boxes {
+   width: 35px;
+   transition: transform 0.3s ease-in-out;
+   padding: 15px 10px 15px 10px;
+ }
+
+ .linkedin-logo {
+   width: 36px;
+   filter: invert(72%) sepia(4%) saturate(3243%) hue-rotate(337deg) brightness(124%) contrast(99%);
+ }
+
+ .github-logo {
+   filter: invert(28%) sepia(4%) saturate(3243%) hue-rotate(337deg) brightness(124%) contrast(99%);
+ }
+
+ .title-section {
+   display: flex;
+   align-items: center;
+ }
+
+
+ .boxes:hover {
+   transform: translateY(-10px);
+ }
