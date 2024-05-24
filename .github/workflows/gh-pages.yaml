@@ -1,9 +1,8 @@
-name: Flutter Web
+name: Gh-Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ master ]
 
 jobs:
   build:
@@ -11,13 +10,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-
+      
+      - name: Getting on Github Pages
+        uses: bluefireteam/flutter-gh-pages@v8
+        with:
+          baseHref: /portfolio/
+          webRenderer: canvaskit
+      
       - name: Install dependencies
         run: flutter pub get
 
