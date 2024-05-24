@@ -29,4 +29,13 @@ jobs:
       - name: Build Web
         run: flutter build web --release
 
-      
+      - name: Deploy
+        run: |
+          cd build/web
+          git init
+          git add .
+          git commit -m "update"
+          git checkout -M master
+          git status
+          git remote add origin https://github.com/BrunoRabbit/BrunoRabbit.github.io.git
+          git push origin gh-pages
