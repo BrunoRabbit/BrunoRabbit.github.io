@@ -29,15 +29,4 @@ jobs:
       - name: Build Web
         run: flutter build web --release
 
-      - name: Deploy
-        run: |
-          cd build/web
-          git init
-          git config --global user.email brunoca2000@hotmail.com
-          git config --global user.name Bruno Coelho
-          git status
-          git remote add origin https://${{secrets.PORTFOLIO_TOKEN}}@github.com/BrunoRabbit/BrunoRabbit.github.io.git
-          git checkout -b gh-pages
-          git add --all
-          git commit -m "update"
-          git push origin gh-pages -f
+      
