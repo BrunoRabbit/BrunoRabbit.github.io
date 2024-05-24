@@ -35,7 +35,7 @@ jobs:
           git init
           git add .
           git commit -m "update"
-          git checkout -M master
+          git checkout -M gh-pages
           git status
           git remote add origin https://github.com/BrunoRabbit/BrunoRabbit.github.io.git
           git push origin gh-pages
