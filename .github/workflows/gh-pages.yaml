@@ -33,6 +33,8 @@ jobs:
         run: |
           cd build/web
           git init
+          git config --global user.email brunoca2000@hotmail.com
+          git config --global user.name Bruno Coelho
           git add .
           git commit -m "update"
           git checkout -M gh-pages
