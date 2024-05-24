@@ -31,7 +31,7 @@ jobs:
           git config --global user.email brunoca2000@hotmail.com
           git config --global user.name Bruno Coelho
           git status
-          git remote add origin https://${{secrets.token}}@github.com/brunorabbit/BrunoRabbit.github.io.git
+          git remote add origin https://${{secrets.PORTFOLIO_TOKEN}}@github.com/brunorabbit/BrunoRabbit.github.io.git
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
