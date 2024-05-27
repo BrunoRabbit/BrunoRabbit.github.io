@@ -19,7 +19,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.4'
+          flutter-version: "3.19.4"
 
       - name: Install dependencies
         run: flutter pub get
@@ -36,18 +36,13 @@ jobs:
       - name: Deploy to GitHub Pages
         if: ${{ github.ref == 'refs/heads/master' }}
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          # Start the SSH agent and add the private key
-          eval "$(ssh-agent -s)"
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-          git remote set-url origin git@github.com:${{ github.repository }}.git
+          # Use HTTPS with token authentication
+          git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
 
           git add -f build/web
           git commit -m 'Deploy to GitHub Pages' || echo "No changes to commit"
