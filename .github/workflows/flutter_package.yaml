@@ -1,29 +1,53 @@
-name: flutter_package
+name: Flutter CI
 
-on: pull_request
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
-      uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yaml@v1
-
-  visualize:
-    needs: build
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
-      - name: Generate Dependency Graph
-        env:
-          FLUTTER_DART_HOME: ${{ env.FLUTTER_HOME }}/bin/cache/dart-sdk/bin
-          FLUTTER_PUB_CACHE: ${{env.FLUTTER_HOME}}/.pub-cache/bin
-        run: |
-          flutter pub global activate pubviz
-          export PATH=$PATH:$FLUTTER_DART_HOME
-          export PATH=$PATH:$FLUTTER_PUB_CACHE
-          pubviz print -d > pubviz.html
-      
-      - name: Upload Dependency Graph
-        uses: actions/upload-artifact@v1
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          name: dependency-graph
-          path: pubviz.html
+          flutter-version: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build web
+        run: flutter build web --release
+
+      - name: Deploy to GitHub Pages
+        if: ${{ github.ref == 'refs/heads/master' }}
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin git@github.com:${{ github.repository }}.git
+          
+          # Configure SSH
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+          git add -f build/web
+          git commit -m 'Deploy to GitHub Pages' || echo "No changes to commit"
+          git push origin `git subtree split --prefix build/web master`:gh-pages --force
