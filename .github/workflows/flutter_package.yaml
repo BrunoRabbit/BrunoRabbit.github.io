@@ -41,12 +41,13 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote set-url origin git@github.com:${{ github.repository }}.git
           
-          # Configure SSH
-          mkdir -p ~/.ssh
+          # Start the SSH agent and add the private key
+          eval "$(ssh-agent -s)"
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+          git remote set-url origin git@github.com:${{ github.repository }}.git
 
           git add -f build/web
           git commit -m 'Deploy to GitHub Pages' || echo "No changes to commit"
