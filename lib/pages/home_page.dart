@@ -568,7 +568,7 @@ class _HoverListItemState extends State<HoverListItem>
                                 ),
                               ),
                             )
-                      : Container(
+                      : const SizedBox(
                           height: 200,
                           width: 340,
                         ),
