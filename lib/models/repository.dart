@@ -4,7 +4,7 @@ class Repository {
   final bool isPrivate;
   final String htmlUrl;
   final String? description;
-  final String language;
+  final String? language;
   // List<Topics> topics;
 
   Repository({
@@ -25,7 +25,7 @@ class Repository {
       // phone: (json['phones'] as List).map((e) => Phone.fromJson(e)).toList(),
       // address: Address.fromJson(json['address']),
       description: json['description'] ?? "",
-      language: json['language'],
+      language: json['language'] ?? "",
     );
   }
 }

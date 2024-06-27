@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart' hide TextDirection;
 import '../models/git_info.dart';
@@ -156,7 +157,8 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     children: [
                       CustomPaint(
-                        painter: SeparatorPainter(color: Colors.black.withOpacity(.9)),
+                        painter: SeparatorPainter(
+                            color: Colors.black.withOpacity(.9)),
                         child: const SizedBox(
                           height: 120,
                           width: double.infinity,
@@ -495,6 +497,13 @@ class _HoverListItemState extends State<HoverListItem>
     super.dispose();
   }
 
+  isPngUrl(String url) {
+    if (url.contains('.png')) {
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HomePageViewModel>(context);
@@ -541,14 +550,25 @@ class _HoverListItemState extends State<HoverListItem>
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
                   height: 220,
-                  color: Colors.blue,
+                  color: Colors.grey.withOpacity(.4),
                   child: projectToFind.imagePath.isNotEmpty
-                      ? Image.asset(
-                          projectToFind.imagePath,
-                          fit: BoxFit.cover,
-                        )
+                      ? isPngUrl(projectToFind.imagePath)
+                          ? Image.asset(
+                              projectToFind.imagePath,
+                              fit: BoxFit.cover,
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.all(24.0),
+                              child: SvgPicture.asset(
+                                projectToFind.imagePath,
+                                width: 240,
+                                colorFilter: const ColorFilter.mode(
+                                  Colors.grey,
+                                  BlendMode.srcIn,
+                                ),
+                              ),
+                            )
                       : Container(
-                          color: Colors.red,
                           height: 200,
                           width: 340,
                         ),
@@ -643,7 +663,7 @@ class _HoverListItemState extends State<HoverListItem>
                       color: AppColors.lightBlue,
                     ),
                     child: Text(
-                      widget.item.repositoryInfo.language,
+                      widget.item.repositoryInfo.language ?? "Nao identificado",
                       style: TextStyles.body.copyWith(
                         fontWeight: FontWeight.w600,
                       ),

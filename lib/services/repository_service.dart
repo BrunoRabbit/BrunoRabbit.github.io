@@ -5,13 +5,14 @@ import '../http_manager.dart';
 import '../models/git_info.dart';
 
 class ReposService {
-  Future<List<GitInfo?>> getRepoInfo() async {
+  Future<List<GitInfo?>> getRepoInfo(int page) async {
     final request = HttpManager(
-      url: 'http://localhost:3000/user',
+      url: 'https://api.github.com/users/BrunoRabbit/repos?page=$page',
     );
 
     try {
       Response response = await request.get();
+
       final responseData = jsonDecode(response.body);
 
       return (responseData as List<dynamic>)

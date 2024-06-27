@@ -9,17 +9,15 @@ class HomePageViewModel extends ChangeNotifier {
   List<GitInfo?> gitInfos = [];
   List<GitInfo?> filteredGitInfos = [];
   List<String> namesToFind = [
-    ProjectToFind.greatplacess.name,
-    ProjectToFind.jokenpo.name,
-    ProjectToFind.solidPrinciples.name,
-    ProjectToFind.name4.name,
-    ProjectToFind.name5.name,
+    ProjectToFind.pomodoroTimer.name,
+    ProjectToFind.moviesApi.name,
+    ProjectToFind.calculatorFlutter.name,
   ];
 
   int myAge = 0;
   String selectedText = "Copiar";
   List<bool> isMouseEnter = [];
-  
+
   Future<void> launchInBrowser(String url) async {
     if (!await UrlLauncherPlatform.instance.canLaunch(url)) {
       throw Exception('Could not launch $url');
@@ -74,21 +72,21 @@ class HomePageViewModel extends ChangeNotifier {
   }
 
   Future<void> getRepoInfo() async {
-    gitInfos = await service.getRepoInfo();
+    gitInfos = await service.getRepoInfo(1);
+    gitInfos.addAll(await service.getRepoInfo(2));
     notifyListeners();
   }
 
   Future<void> filterRepoInfo() async {
     isMouseEnter = List<bool>.filled(namesToFind.length, false);
-    filteredGitInfos.addAll(gitInfos);
-    filteredGitInfos = filteredGitInfos
+    filteredGitInfos = gitInfos
         .where((gitInfo) => namesToFind.contains(gitInfo!.repositoryInfo.name))
         .toList();
 
     notifyListeners();
   } // flutter run -d chrome --web-browser-flag "--disable-web-security"
 
-  formatTitle(String item) {
+  String formatTitle(String item) {
     String title = item;
 
     if (RegExp(r'[-_]').hasMatch(item)) {

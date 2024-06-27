@@ -22,6 +22,7 @@ dependencies:
   http: ^1.2.1
   animate_do: ^3.3.4
   transparent_image: ^2.0.1
+  flutter_svg: ^2.0.10+1
   
 dev_dependencies:
   flutter_test:
@@ -37,6 +38,7 @@ flutter:
     - assets/images/
     - assets/images/repo_images/
     - assets/images/repo_images/pomodoro/
+    - assets/images/repo_images/movie/
   #   - images/a_dot_ham.jpeg
 
   fonts:

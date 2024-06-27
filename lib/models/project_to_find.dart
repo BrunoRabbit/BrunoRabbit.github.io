@@ -1,7 +1,7 @@
 enum ProjectToFind {
-  greatplacess,
-  jokenpo,
-  solidPrinciples,
+  pomodoroTimer,
+  moviesApi,
+  calculatorFlutter,
   name4,
   name5,
 }
@@ -9,12 +9,12 @@ enum ProjectToFind {
 extension ProjectToFindExtension on ProjectToFind {
   String get name {
     switch (this) {
-      case ProjectToFind.greatplacess:
-        return 'great-placess';
-      case ProjectToFind.jokenpo:
-        return 'joken-po';
-      case ProjectToFind.solidPrinciples:
-        return 'solid_principles';
+      case ProjectToFind.pomodoroTimer:
+        return 'pomodoro-timer';
+      case ProjectToFind.moviesApi:
+        return 'movies-api';
+      case ProjectToFind.calculatorFlutter:
+        return 'calculator-flutter';
       default:
         return 'Not found';
     }
@@ -22,12 +22,12 @@ extension ProjectToFindExtension on ProjectToFind {
 
   static ProjectToFind fromString(String value) {
     switch (value) {
-      case 'great-placess':
-        return ProjectToFind.greatplacess;
-      case 'joken-po':
-        return ProjectToFind.jokenpo;
-      case 'solid_principles':
-        return ProjectToFind.solidPrinciples;
+      case 'pomodoro-timer':
+        return ProjectToFind.pomodoroTimer;
+      case 'movies-api':
+        return ProjectToFind.moviesApi;
+      case 'calculator-flutter':
+        return ProjectToFind.calculatorFlutter;
       default:
         throw ArgumentError('Invalid ProjectToFind: $value');
     }
@@ -35,10 +35,12 @@ extension ProjectToFindExtension on ProjectToFind {
 
   String get imagePath {
     switch (this) {
-      case ProjectToFind.greatplacess:
+      case ProjectToFind.pomodoroTimer:
         return 'assets/images/repo_images/pomodoro/pomodoro_image.png';
-      case ProjectToFind.jokenpo:
-      case ProjectToFind.solidPrinciples:
+      case ProjectToFind.moviesApi:
+        return 'assets/images/repo_images/movie/movie_image.png';
+      case ProjectToFind.calculatorFlutter:
+        return 'assets/images/no_found_image.svg';
       case ProjectToFind.name4:
       case ProjectToFind.name5:
         return '';
